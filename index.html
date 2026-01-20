@@ -770,8 +770,15 @@
     const generateApiUrl = (dateFrom, dateTo, offer) =>
       `${baseUrl}/x-rates?msg=false&token=${apiKey}&date_from=${encodeURIComponent(dateFrom)}&date_to=${encodeURIComponent(dateTo)}&offer=${offer}`;
 
+    // const fetchRaw = async (url) => {
+    //   const res = await fetch(url);
+    //   return res.json();
+    // };
+
     const fetchRaw = async (url) => {
-      const res = await fetch(url);
+      // Alternative CORS proxy
+      const proxyUrl = 'https://corsproxy.io/?' + encodeURIComponent(url);
+      const res = await fetch(proxyUrl);
       return res.json();
     };
 
